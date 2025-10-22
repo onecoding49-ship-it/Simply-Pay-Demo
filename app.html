@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simply Pay — Smart Spending Demo</title>
+  <style>
+    :root{
+      --bg:#0f1724;--card:#0b1320;--accent:#6ee7b7;--muted:#94a3b8;--glass:rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui; margin:0; background:linear-gradient(180deg,var(--bg) 0%, #071026 100%);
+      color:#e6eef6; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; padding:20px;
+    }
+    .card{
+      background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.05);
+      border-radius:16px; padding:30px; width:100%; max-width:420px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    }
+    h1{text-align:center;margin-bottom:16px;color:var(--accent)}
+    label{display:block;margin-bottom:6px;font-size:14px;color:var(--muted)}
+    input[type="text"]{
+      width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.02);color:#fff;font-size:14px;margin-bottom:14px;
+    }
+    .btn-row{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+    button{
+      background:linear-gradient(90deg,var(--accent), #34d399);color:#022;padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer;transition:transform .15s ease;
+    }
+    button:hover{transform:scale(1.05)}
+    .message{
+      margin-top:20px;text-align:center;color:var(--muted);font-size:15px;min-height:24px;
+    }
+    footer{margin-top:40px;font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Simply Pay</h1>
+    <label for="cc">Enter Credit Card Number</label>
+    <input type="text" id="cc" placeholder="1234 5678 9012 3456" maxlength="19" />
+
+    <div style="text-align:center;margin-bottom:8px;color:var(--muted);font-size:14px">Choose a purchase type</div>
+
+    <div class="btn-row">
+      <button onclick="makePurchase('food')">Food</button>
+      <button onclick="makePurchase('technology')">Technology</button>
+      <button onclick="makePurchase('other')">Other</button>
+    </div>
+
+    <div class="message" id="message"></div>
+  </div>
+<a href="main.html" class="btn" style="flex:1;display:inline-block;text-align:center;text-decoration:none;">
+  Back
+</a>
+  <footer>© Nameless Technology — Smart Spending Demo</footer>
+
+  <script>
+    function makePurchase(type){
+      const msg=document.getElementById('message');
+      let cost=0;let advice="";
+      if(type==='food'||type==='technology'){cost=30;} else {cost=100;}
+      if(cost===30){
+        advice="Smart choice! Low-cost spending keeps you within your daily cap. Track your meals and gadgets budget in Simply Pay.";
+      } else {
+        advice="That’s a big purchase. Try waiting 24 hours before buying or see if you can find a cheaper option — Simply Pay can help you set a delay.";
+      }
+      msg.textContent=`You spent $${cost}. ${advice}`;
+    }
+  </script>
+</body>
+</html>
